@@ -80,3 +80,20 @@ export const updatePrestamos= async (req, res) => {
 
    }
 };
+
+export const updatePrestamosE = async (req, res) => {
+   const id = req.params.id;
+   const estado = req.body.estado;
+ 
+   try {
+     const result = await pool.query(`CALL spUpdatePrestamosE('${id}', '${estado}');`);
+     if (result[0].affectedRows !== 0) {
+       res.status(200).json({ message: "Estado actualizado exitosamente." });
+     } else {
+       res.status(400).json({ message: "Error: No se pudo actualizar el estado." });
+     }
+   } catch (error) {
+     console.error(error);
+     res.status(500).json({ message: "Error interno del servidor." });
+   }
+ };

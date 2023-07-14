@@ -14,6 +14,7 @@ route.get("/prestamos/:id",controller.findPrestamos);
 route.post("/prestamos",controller.insertPrestamos);
 route.put("/prestamos/:id",controller.updatePrestamos);
 route.delete("/prestamos/:id",controller.deletePrestamos);
+route.put("/prestamo/:id",controller.updatePrestamosE);
 
 
 export default route;

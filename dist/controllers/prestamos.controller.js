@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updatePrestamos = exports.insertPrestamos = exports.findPrestamos = exports.findAllPrestamos = exports.deletePrestamos = void 0;
+exports.updatePrestamosE = exports.updatePrestamos = exports.insertPrestamos = exports.findPrestamos = exports.findAllPrestamos = exports.deletePrestamos = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
@@ -178,3 +178,45 @@ var updatePrestamos = /*#__PURE__*/function () {
   };
 }();
 exports.updatePrestamos = updatePrestamos;
+var updatePrestamosE = /*#__PURE__*/function () {
+  var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
+    var id, estado, result;
+    return _regenerator["default"].wrap(function _callee6$(_context6) {
+      while (1) switch (_context6.prev = _context6.next) {
+        case 0:
+          id = req.params.id;
+          estado = req.body.estado;
+          _context6.prev = 2;
+          _context6.next = 5;
+          return _db.pool.query("CALL spUpdatePrestamosE('".concat(id, "', '").concat(estado, "');"));
+        case 5:
+          result = _context6.sent;
+          if (result[0].affectedRows !== 0) {
+            res.status(200).json({
+              message: "Estado actualizado exitosamente."
+            });
+          } else {
+            res.status(400).json({
+              message: "Error: No se pudo actualizar el estado."
+            });
+          }
+          _context6.next = 13;
+          break;
+        case 9:
+          _context6.prev = 9;
+          _context6.t0 = _context6["catch"](2);
+          console.error(_context6.t0);
+          res.status(500).json({
+            message: "Error interno del servidor."
+          });
+        case 13:
+        case "end":
+          return _context6.stop();
+      }
+    }, _callee6, null, [[2, 9]]);
+  }));
+  return function updatePrestamosE(_x11, _x12) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+exports.updatePrestamosE = updatePrestamosE;
